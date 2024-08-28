@@ -1,3 +1,4 @@
 class Order < ApplicationRecord
-  # Add associations, validations, etc.
+  belongs_to :event
+  belongs_to :user
 end

@@ -1,3 +1,3 @@
 class Sport < ApplicationRecord
-  # Add associations, validations, etc.
+  has_many :events
 end
