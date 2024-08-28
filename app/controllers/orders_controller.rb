@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
     end
 
     if event.total_seats > Order.where(event: event, status: 'confirmed').count
-      order = Order.new(user: user, event: event, status: 'pending')
+      order = Order.new(user: user, event: event, status: 'confirmed')
       if order.save
         render json: order.as_json(include: [:user, :event]), status: :created
       else
