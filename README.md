@@ -1,24 +1,39 @@
-# README
+# Sports Facility Booking System
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
 
-Things you may want to cover:
+This is a Ruby on Rails application for managing sports facility bookings. It allows users to view events, book slots, and manage their profiles. Admins have additional capabilities such as managing events and users.
 
-* Ruby version
+## Features
 
-* System dependencies
+- User registration and authentication
+- Event listing and details
+- Booking management
+- Admin dashboard for managing users and events (Not done yet canbe done in future)
+- Schema is lept scalabale
 
-* Configuration
+## Getting Started
 
-* Database creation
+### Prerequisites
 
-* Database initialization
+- Ruby 3.2.0
+- Rails 7.2.1
+- Sqlite3
+- Bundler
 
-* How to run the test suite
+### Installation
 
-* Services (job queues, cache servers, search engines, etc.)
+1. **Get this repo locally**
+2. **Install Gems**
 
-* Deployment instructions
+bundle install
 
-* ...
+3. Setup Database
+
+rails db:create
+rails db:migrate
+rails db:seed
+
+4. Start Server
+
+rails server
