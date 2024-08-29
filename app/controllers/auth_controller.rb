@@ -16,8 +16,9 @@ class AuthController < ApplicationController
   def login
     user = User.find_by(email: params[:email])
 
-    if user && user.authenticate(params[:password])
-      render json: { message: 'Login successful', user: user.as_json }
+    if user&.authenticate(params[:password])
+      token = encode_token(user_id: user.id)
+      render json: { token: token, user: user.as_json }
     else
       render json: { error: 'Invalid credentials' }, status: :unauthorized
     end
@@ -27,5 +28,9 @@ class AuthController < ApplicationController
 
   def user_params
     params.permit(:username, :email, :password)
+  end
+
+  def encode_token(payload)
+    JWT.encode(payload, 'Yash')
   end
 end
