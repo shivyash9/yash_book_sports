@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_28_074526) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_01_075821) do
   create_table "events", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_28_074526) do
     t.datetime "end_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["location_id"], name: "index_events_on_location_id"
     t.index ["sport_id"], name: "index_events_on_sport_id"
     t.index ["start_time", "end_time"], name: "index_events_on_start_time_and_end_time"
@@ -32,6 +33,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_28_074526) do
     t.string "pincode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "iframe"
     t.index ["pincode"], name: "index_locations_on_pincode"
   end
 
@@ -41,6 +43,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_28_074526) do
     t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "seats", default: 1, null: false
     t.index ["event_id"], name: "index_orders_on_event_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
