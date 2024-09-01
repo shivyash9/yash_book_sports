@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_01_075821) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_01_104336) do
   create_table "events", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -22,6 +22,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_01_075821) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.integer "created_by_id"
+    t.string "event_visibility", default: "public", null: false
+    t.index ["created_by_id"], name: "index_events_on_created_by_id"
+    t.index ["event_visibility"], name: "index_events_on_event_visibility"
     t.index ["location_id"], name: "index_events_on_location_id"
     t.index ["sport_id"], name: "index_events_on_sport_id"
     t.index ["start_time", "end_time"], name: "index_events_on_start_time_and_end_time"
@@ -72,6 +76,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_01_075821) do
 
   add_foreign_key "events", "locations"
   add_foreign_key "events", "sports"
+  add_foreign_key "events", "users", column: "created_by_id"
   add_foreign_key "orders", "events"
   add_foreign_key "orders", "users"
 end

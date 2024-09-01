@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
-  resources :orders, only: [:create]
+  resources :orders, only: [ :create ]
 
   get "events/index"
-  resources :events, only: [:show]
+  resources :events, only: [ :show ]
 
-  post 'signup', to: 'auth#signup'
-  post 'login', to: 'auth#login'
+  post "signup", to: "auth#signup"
+  post "login", to: "auth#login"
+
+  resources :users do
+    collection do
+      get "my_orders"
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -2,9 +2,9 @@ class EventsController < ApplicationController
   # GET /events
   def index
     if params[:location_id]
-      @events = Event.where(location_id: params[:location_id])
+      @events = Event.where(location_id: params[:location_id], event_visibility: "public")
     else
-      @events = Event.all
+      @events = Event.where(event_visibility: "public")
     end
 
     @events = @events.map do |event|
