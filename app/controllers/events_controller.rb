@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   # GET /events
+  skip_before_action :authenticate_request, only: [ :index, :show ]
+
   def index
     if params[:location_id]
       @events = Event.where(location_id: params[:location_id], event_visibility: "public")

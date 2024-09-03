@@ -1,23 +1,21 @@
-class ApplicationController < ActionController::Base
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  # before_action :authorize_request, except: :login
+class ApplicationController < ActionController::API
+  before_action :authenticate_request
 
-  # def current_user
-  #   @current_user
-  # end
+  def authenticate_request
+    header = request.headers["Authorization"]
+    token = header.split(" ").last if header
+    @current_user = User.find_by(id: decode_token(token)) if token
+    render json: { error: "Unauthorized" }, status: :unauthorized unless @current_user
+  end
 
-  # private
+  private
 
-  # def authorize_request
-  #   header = request.headers['Authorization']
-  #   header = header.split(' ').last if header
-  #   decoded = decode_token(header)
-  #   @current_user = User.find(decoded[:user_id]) if decoded
-  # rescue
-  #   render json: { error: 'Not Authorizesssd' }, status: :unauthorized
-  # end
-
-  # def decode_token(token)
-  #   JWT.decode(token, Rails.application.secrets.secret_key_base).first
-  # end
+  def decode_token(token)
+    return nil if token.blank?
+    decoded = JWT.decode(token, ENV["JWT_SECRET"])[0]
+    return nil if decoded["exp"] < Time.now.to_i
+    decoded["user_id"]
+  rescue JWT::DecodeError
+    nil
+  end
 end

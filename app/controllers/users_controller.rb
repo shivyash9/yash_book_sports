@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
   # GET /my_orders
-  skip_before_action :verify_authenticity_token, only: [ :my_orders ]
-
   def my_orders
     user = User.find_by(id: params[:user_id])
     if user.nil?

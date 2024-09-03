@@ -16,9 +16,10 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
-gem 'bcrypt', '~> 3.1.7'
-gem 'jwt'
-gem 'rack-cors'
+gem "bcrypt", "~> 3.1.7"
+gem "jwt"
+gem "rack-cors"
+gem "dotenv-rails", groups: [ :development, :test ]
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

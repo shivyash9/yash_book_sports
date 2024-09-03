@@ -1,8 +1,6 @@
 class OrdersController < ApplicationController
   # POST /orders
 
-  skip_before_action :verify_authenticity_token, only: [ :create ]
-
   def create
     user = User.find_by(id: params[:user_id])
     event = Event.find_by(id: params[:event_id])
