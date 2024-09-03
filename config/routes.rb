@@ -2,7 +2,14 @@ Rails.application.routes.draw do
   resources :orders, only: [ :create ]
 
   get "events/index"
-  resources :events, only: [ :show ]
+  # get "sports/index"
+  # get "locations/index"
+
+  resources :events, only: [ :show, :create ]
+
+  resources :sports, only: [ :index, :create ]
+  resources :locations, only: [ :index, :create ]
+  resources :events, only: [ :create, :show ]
 
   post "signup", to: "auth#signup"
   post "login", to: "auth#login"

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
     token = header.split(" ").last if header
     Rails.logger.info "Token: #{token}" # Debugging line
     @current_user = User.find_by(id: decode_token(token)) if token
-    render json: { error: "Unauthorized" }, status: :unauthorized unless @current_user
+    # render json: { error: "Unauthorized" }, status: :unauthorized unless @current_user
   end
 
   private
