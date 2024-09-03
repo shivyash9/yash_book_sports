@@ -31,6 +31,6 @@ class AuthController < ApplicationController
   def encode_token(payload)
     expiration = 24.hours.from_now.to_i
     payload[:exp] = expiration
-    JWT.encode(payload, ENV["JWT_SECRET"])
+    JWT.encode(payload, JWT_TOKEN_KEY)
   end
 end
